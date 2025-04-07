@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build LaTeX (pdflatex)",
+			"type": "shell",
+			"command": "/Library/TeX/texbin/pdflatex",
+			"args": [
+				"-synctex=1",
+				"-interaction=nonstopmode",
+				"-file-line-error",
+				"${file}"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": [
+				"$latex"
+			]
+		}
+	]
+}

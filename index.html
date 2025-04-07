@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Individual Content and Motion Dynamics Preserved Pruning for Video Diffusion Models Compression</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="./resources/bootstrap.min.css">
+    <link rel="stylesheet" href="./resources/font-awesome.min.css">
+    <link rel="stylesheet" href="./resources/codemirror.min.css">
+    <link rel="stylesheet" href="./resources/app.css">
+    <link rel="stylesheet" href="./resources/bootstrap.min(1).css">
+
+    <script src="./resources/jquery.min.js"></script>
+    <script src="./resources/bootstrap.min.js"></script>
+    <script src="./resources/codemirror.min.js"></script>
+    <script src="./resources/clipboard.min.js"></script>
+
+    <script src="./resources/app.js"></script>
+</head>
+
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h2 class="col-md-12 text-center">
+                Individual Content and Motion Dynamics Preserved Pruning for Video Diffusion Models Compression<br>
+            </h2>
+            <h3 class="col-md-12 text-center">
+                ACM MM 2025<br>
+            </h3>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                    <li>
+                        <a href="https://www.wuyiming.site">
+                            Yiming Wu
+                        </a>
+                        <br>The University of Hong Kong
+                    </li>
+                    <li>
+                        <a href="https://www.newcastle.edu.au/profile/zhenghao-chen">
+                            Zhenghao Chen
+                        </a>
+                        <br>University of Newcastle
+                    </li>
+                    <li>
+                        <a href="http://huanwang.tech/">
+                            Huan Wang
+                        </a>
+                        <br>Westlake University
+                    </li>
+                    <li>
+                        <a href="https://www.cs.hku.hk/people/academic-staff/dongxu">
+                            Dong Xu*
+                        </a>
+                        <br>The University of Hong Kong
+                    </li><br>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 text-center">
+                <ul class="nav nav-pills nav-justified">
+                    <li>
+                        <a href="https://arxiv.org/abs/2411.18375">
+                            <img src="resources/paper-min.png" height="60px">
+                            <h4><strong>Paper</strong></h4>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/abs/2411.18375">
+                            <img src="resources/github.png" height="60px" />
+                            <h4><strong>Code </strong></h4>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <p class="text-justify">
+                The high computational cost and slow inference time are major obstacles to deploying Video Diffusion Models (VDMs). To overcome this, we introduce a new Video Diffusion Model Compression approach using individual content and motion dynamics preserved pruning and consistency loss. First, we empirically observe that deeper VDM layers are crucial for maintaining the quality of motion dynamics (e.g., coherence of the entire video), while shallower layers are more focused on individual content (e.g., individual frames). Therefore, we prune redundant blocks from the shallower layers while preserving more of the deeper layers, resulting in a lightweight VDM variant called VDMini. Moreover, we propose an Individual Content and Motion Dynamics (ICMD) Consistency Loss to gain comparable generation performance as larger VDM to VDMini. In particular, we first use the Individual Content Distillation (ICD) Loss to preserve the consistency in the features of each generated frame between the teacher and student models. Next, we introduce a Multi-frame Content Adversarial (MCA) Loss to enhance the motion dynamics across the generated video as a whole. This method significantly accelerates inference time while maintaining high-quality video generation. Extensive experiments demonstrate the effectiveness of our VDMini on two important video generation tasks, Text-to-Video (T2V) and Image-to-Video (I2V), where we respectively achieve an average 2.5x, 1.4x, and 1.25x speed up for the I2V method SF-V, the T2V method T2V-Turbo-v2, and the T2V method HunyuanVideo, while maintaining the quality of the generated videos on several benchmarks including UCF101, VBench-T2V, and VBench-I2V.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Method
+                </h3>
+            </div>
+
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <ul class="nav nav-pills nav-justified">
+                    <li>
+                        <a href="https://arxiv.org/abs/2411.18375">
+                            <img src="resources/framework.png" height="360px">
+                            <!-- <h4><strong>Paper</strong></h4> -->
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Comparison
+                </h3>
+            </div>
+
+            <div class="col-md-8 col-md-offset-4">
+                <!-- <h4><i>Left:</i> SF-V; <i>Right:</i> VDMini-I2V.</h4> -->
+                 <h4><i>VDMini-I2V.</h4>
+            </div>
+            <div class="col-md-8 col-md-offset-4">
+                <div class="col-md-8">
+                    <video id="v1" width="80%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/sf-v/VDMini-I2V.mp4" type="video/mp4" />
+                    </video>
+                    <!-- <video id="v2" width="38.2%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/synthetic/chair.mp4" type="video/mp4" />
+                    </video> -->
+                </div>
+                <!-- <div class="col-md-6">
+                    <video id="v3" width="40%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/synthetic/drum_record_mp4.mp4" type="video/mp4" />
+                    </video>
+                    <video id="v4" width="38.2%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/synthetic/drum.mp4" type="video/mp4" />
+                    </video>
+                </div> -->
+            </div>
+            <br>
+            <br><br>
+
+            <div class="col-md-8 col-md-offset-4">
+                <h4>VDMini-T2V.</h4>
+            </div>
+            <div class="col-md-8 col-md-offset-4">
+                <!-- <div class="col-md-6">
+                    <video id="v1" width="40%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/synthetic/ficus_record_mp4.mp4" type="video/mp4" />
+                    </video>
+                    <video id="v2" width="38.2%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/synthetic/ficus.mp4" type="video/mp4" />
+                    </video>
+                </div> -->
+                <div class="col-md-8">
+                    <video id="v3" width="80%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/t2v-turbo-v2/VDMini-T2V.mp4" type="video/mp4" />
+                    </video>
+                    <!-- <video id="v4" width="38.2%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/synthetic/hotdog.mp4" type="video/mp4" />
+                    </video> -->
+                </div>
+            </div>
+            <br>
+            <br><br>
+
+            <!-- <div class="col-md-8 col-md-offset-2">
+                <h4><i>Left Two:</i> Lego; <i>Right Two:</i> Material.</h4>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-6">
+                    <video id="v1" width="40%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/synthetic/lego_record_mp4.mp4" type="video/mp4" />
+                    </video>
+                    <video id="v2" width="38.2%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/synthetic/lego.mp4" type="video/mp4" />
+                    </video>
+                </div>
+                <div class="col-md-6">
+                    <video id="v3" width="40%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/synthetic/material_record_mp4.mp4" type="video/mp4" />
+                    </video>
+                    <video id="v4" width="38.2%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/synthetic/material.mp4" type="video/mp4" />
+                    </video>
+                </div>
+            </div>
+            <br>
+            <br><br>
+
+            <div class="col-md-8 col-md-offset-2">
+                <h4><i>Left Two:</i> Mic; <i>Right Two:</i> Ship.</h4>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-6">
+                    <video id="v1" width="40%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/synthetic/mic_record_mp4.mp4" type="video/mp4" />
+                    </video>
+                    <video id="v2" width="38.2%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/synthetic/mic.mp4" type="video/mp4" />
+                    </video>
+                </div>
+                <div class="col-md-6">
+                    <video id="v3" width="40%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/synthetic/ship_record_mp4.mp4" type="video/mp4" />
+                    </video>
+                    <video id="v4" width="38.2%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/synthetic/ship.mp4" type="video/mp4" />
+                    </video>
+                </div>
+            </div>
+            <br>
+            <br><br>
+
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Results on Forward-facing Dataset.
+                </h3>
+            </div>
+
+            <div class="col-md-8 col-md-offset-2">
+                <h4><i>Left Two:</i> Fern; <i>Right Two:</i> Flower.</h4>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-6">
+                    <video id="v1" width="40%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/forward_facing/fern_record.mp4" type="video/mp4" />
+                    </video>
+                    <video id="v2" width="38.2%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/forward_facing/fern.mp4" type="video/mp4" />
+                    </video>
+                </div>
+                <div class="col-md-6">
+                    <video id="v3" width="40%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/forward_facing/flower_record.mp4" type="video/mp4" />
+                    </video>
+                    <video id="v4" width="38.2%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/forward_facing/flower.mp4" type="video/mp4" />
+                    </video>
+                </div>
+            </div>
+            <br>
+            <br><br>
+
+            <div class="col-md-8 col-md-offset-2">
+                <h4><i>Left Two:</i> Fortress; <i>Right Two:</i> Horn.</h4>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-6">
+                    <video id="v1" width="40%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/forward_facing/fortress_record.mp4" type="video/mp4" />
+                    </video>
+                    <video id="v2" width="38.2%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/forward_facing/fortress.mp4" type="video/mp4" />
+                    </video>
+                </div>
+                <div class="col-md-6">
+                    <video id="v3" width="40%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/forward_facing/horn_record.mp4" type="video/mp4" />
+                    </video>
+                    <video id="v4" width="38.2%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/forward_facing/horn.mp4" type="video/mp4" />
+                    </video>
+                </div>
+            </div>
+            <br>
+            <br><br>
+
+            <div class="col-md-8 col-md-offset-2">
+                <h4><i>Left Two:</i> Leaves; <i>Right Two:</i> Orchids.</h4>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-6">
+                    <video id="v1" width="40%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/forward_facing/leaves_record.mp4" type="video/mp4" />
+                    </video>
+                    <video id="v2" width="38.2%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/forward_facing/leaves.mp4" type="video/mp4" />
+                    </video>
+                </div>
+                <div class="col-md-6">
+                    <video id="v3" width="40%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/forward_facing/orchids_record.mp4" type="video/mp4" />
+                    </video>
+                    <video id="v4" width="38.2%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/forward_facing/orchids.mp4" type="video/mp4" />
+                    </video>
+                </div>
+            </div>
+            <br>
+            <br><br>
+
+            <div class="col-md-8 col-md-offset-2">
+                <h4><i>Left Two:</i> Room; <i>Right Two:</i> Trex.</h4>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-6">
+                    <video id="v1" width="40%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/forward_facing/room_record.mp4" type="video/mp4" />
+                    </video>
+                    <video id="v2" width="38.2%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/forward_facing/room.mp4" type="video/mp4" />
+                    </video>
+                </div>
+                <div class="col-md-6">
+                    <video id="v3" width="40%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/forward_facing/trex_record.mp4" type="video/mp4" />
+                    </video>
+                    <video id="v4" width="38.2%" autoplay="" loop="" muted="" controls="">
+                        <source src="videos/forward_facing/trex.mp4" type="video/mp4" />
+                    </video>
+                </div>
+            </div>
+            <br>
+            <br><br> -->
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Citation
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1">
+                    <textarea id="bibtex" class="form-control" readonly="" style="display: none;">
+                        @inproceedings{wu2025individual,
+                            title={Individual Content and Motion Dynamics Preserved Pruning for Video Diffusion Models},
+                            author={Wu, Yiming and Chen, Zhenghao and Wang, Huan and Xu, Dong},
+                            booktitle={ACM MM 2025},
+                            year={2025}
+                        }
+                    </textarea>
+                    <div class="CodeMirror cm-s-default CodeMirror-wrap">
+                        <div
+                            style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 4px; left: 4px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <p style="color:gray; text-align:right">
+                    <a href="http://mgharbi.com/">Website Credits</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
